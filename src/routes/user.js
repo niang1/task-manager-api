@@ -26,7 +26,7 @@ router.post('/users', async (req, res) => {
     const token = await user.generateToken();
     mailOptions.text = `Thank you very much ${user.name} for your subscription !!!`;
     mailOptions.subject = 'Thank you for your subscription';
-    await transporter.sendMail(mailOptions);
+    // await transporter.sendMail(mailOptions);
     res.status(201).send({ user, token });
   } catch (e) {
     res.status(500).send(e);
@@ -91,7 +91,7 @@ router.delete('/users/me', auth, async (req, res) => {
     const user = await User.findOneAndDelete({ _id: req.user._id });
     mailOptions.text = `Dear ${user.name}, we hope to see soon again !!!`;
     mailOptions.subject = 'Sorry to see you leaving us !!!';
-    await transporter.sendMail(mailOptions);
+    // await transporter.sendMail(mailOptions);
     res.send(user);
   } catch (e) {
     res.status(500).send();
