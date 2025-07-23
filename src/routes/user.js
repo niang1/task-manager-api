@@ -18,6 +18,7 @@ const router = new express.Router();
 
 //user creation
 router.post('/users', async (req, res) => {
+  //console.log(`[${req.method}] ${req.originalUrl}`);
   try {
     const user = new User(req.body);
     await user.save();

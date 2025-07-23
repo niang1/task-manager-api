@@ -95,4 +95,31 @@ router.delete('/tasks/:id', auth, async (req, res) => {
   }
 });
 
+router.get('/alltasks', async (req, res) => {
+  const match = {};
+  const sort = {};
+  if (req.query.sortBy) {
+    const parts = req.query.sortBy.split(':');
+
+    sort[parts[0]] = parts[1] === 'desc' ? -1 : 1;
+  }
+  if (req.query.completed) match.completed = req.query.completed === 'true';
+
+  try {
+    /*  const tasks = await Task.find({ owner: req.user._id });
+    for (const task of tasks) {
+      await task.populate('owner');
+    } */
+    const tasks = await Task.find({ ...match }, null, {
+      limit: parseInt(req.query.limit),
+      skip: parseInt(req.query.skip),
+      sort,
+    });
+    //  await tasks.populate('owner');
+    res.send(tasks);
+  } catch (e) {
+    res.status(500).send(e);
+  }
+});
+
 module.exports = router;
