@@ -10,6 +10,11 @@ const taskSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    priority: {
+      type: String,
+      enum: ['low', 'medium', 'high'],
+      default: 'medium', // Optional default
+    },
     owner: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
