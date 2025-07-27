@@ -39,7 +39,7 @@ router.post('/users/login', async (req, res) => {
     const token = await user.generateToken();
     res.send({ user, token });
   } catch (e) {
-    res.status(401).send({ error: e.message });
+    res.status(400).send({ error: e.message });
   }
 });
 
@@ -100,7 +100,7 @@ router.delete('/users/me', auth, async (req, res) => {
 
 const upload = multer({
   limits: {
-    fileSize: 1000000,
+    fileSize: 2000000,
   },
   fileFilter(req, file, cb) {
     if (!file.originalname.match(/.(png|jpg|jpeg)$/))

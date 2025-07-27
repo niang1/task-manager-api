@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User and Task Manager</title>
+  <link rel="stylesheet" href="/css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+  <div class="main-content">
+    {{>header}}
+    <div>
+       <h1>Users</h1>
+
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Search by name or email" />
+    <button onclick="searchUsers()">Search</button>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Avatar</th>
+        <th class="sortable" onclick="sortBy('name')">Name</th>
+        <th class="sortable" onclick="sortBy('email')">Email</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody id="userTableBody"></tbody>
+  </table>
+
+  <div class="pagination">
+    <button onclick="prevPage()">Previous</button>
+    <span id="pageInfo"></span>
+    <button onclick="nextPage()">Next</button>
+  </div>
+
+  <!-- Modals -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModals()"></div>
+
+  <div class="modal" id="tasksModal">
+    <h3>User Tasks</h3>
+    <ul id="tasksList"></ul>
+    <button onclick="closeModals()">Close</button>
+  </div>
+
+  <div class="modal" id="editModal">
+    <h3>Edit User</h3>
+    <form onsubmit="saveUser(event)">
+      <input type="hidden" id="editUserId" />
+      <label>Name: <input type="text" id="editUserName" /></label><br />
+      <label>Email: <input type="email" id="editUserEmail" /></label><br />
+      <button type="submit">Save</button>
+      <button type="button" onclick="closeModals()">Cancel</button>
+    </form>
+  </div>
+    </div>
+  </div>
+  {{>footer}}
+  <script src="/js/app.js"></script>
+</body>
+</html>

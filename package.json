@@ -5,20 +5,29 @@
   "main": "index.js",
   "scripts": {
     "start": "node src/index.js",
-    "dev":"env-cmd -f ./config/dev.env nodemon src/index.js"
+    "dev": "nodemon --env-file ./config/dev.env src/index.js -e js,hbs,css",
+    "test": "env-cmd -f ./config/test.env jest --watch --runInBand"
+  },
+  "jest": {
+    "testEnvironment": "node"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
-    "env-cmd": "^10.1.0",
-    "nodemon": "^3.1.10"
+    "jest": "^30.0.5",
+    "nodemon": "^3.1.10",
+    "supertest": "^7.1.4"
   },
   "dependencies": {
+    "@faker-js/faker": "^9.9.0",
+    "axios": "^1.11.0",
     "bcrypt": "^6.0.0",
     "express": "^5.1.0",
+    "hbs": "^4.2.0",
     "jsonwebtoken": "^9.0.2",
+    "minimist": "^1.2.8",
     "mongoose": "^8.16.4",
     "multer": "^2.0.2",
     "nodemailer": "^7.0.5",

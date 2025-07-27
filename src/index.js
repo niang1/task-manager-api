@@ -1,19 +1,5 @@
-const express = require('express');
-const userRouter = require('./routes/user');
-const taskRouter = require('./routes/task');
-
-const app = express();
+const app = require('./app');
 const port = process.env.PORT;
-
-/* app.use((req, res, next) => {
-  console.log(`[${req.method}] ${req.originalUrl}`);
-  next();
-}); */
-
-app.use(express.json());
-app.use(userRouter);
-app.use(taskRouter);
-
 app.listen(port, () => {
   console.log('Server connected at port: ', port);
 });
