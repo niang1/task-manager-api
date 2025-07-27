@@ -12,7 +12,7 @@ router.get('/web/users', async (req, res) => {
   });
 });
 router.get('/allusers', async (req, res) => {
-  const users = await User.find({}, null, { limit: 5 });
+  const users = await User.find({});
   res.send(users);
 });
 module.exports = router;
